@@ -10,8 +10,7 @@ modules:
       render: native
 app:
   id: ari:cloud:ecosystem::app/<replace-with-your-app-id>
-  runtime:
-    name: nodejs18.x
+
 resources:
   - key: gadget-ui
     path: src/gadgets/filter-insights.tsx
