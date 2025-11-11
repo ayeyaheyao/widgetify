@@ -1,0 +1,31 @@
+modules:
+  jiraDashboardGadget:
+    - key: filter-insights-gadget
+      title: Filter Insights Gadget
+      description: Visualise Jira and Jira Service Management filters on dashboards.
+      thumbnail: https://developer.atlassian.com/platform/forge/images/marketplace-listing/default-app-icon.png
+      resource: gadget-ui
+      resolver:
+        function: filter-data-resolver
+      render: native
+app:
+  id: ari:cloud:ecosystem::app/<replace-with-your-app-id>
+  runtime:
+    nodejs: 18
+resources:
+  - key: gadget-ui
+    path: src/gadgets/filter-insights.tsx
+function:
+  - key: filter-data-resolver
+    handler: src/resolvers/filter-data.handler
+permissions:
+  scopes:
+    - read:jira-work
+    - read:jira-user
+    - read:jira-service-management:request
+  external:
+    fetch:
+      backend: []
+remotes:
+  - key: analytics-ingress
+    url: https://<replace-with-observability-endpoint>
